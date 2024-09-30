@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Portfolio</title>
+    <script src="updated_scrypt.js" defer></script>
+    <link rel="stylesheet" href="dimensions-in-mobile.css">
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="laptop-dimensions">
+    <div class="container">
+        <header class="con item1">
+            <img src="img11.png" alt="Profile Image">
+            <h1 id="name"></h1>
+            <p id="title"></p>
+            <hr>
+            <div id="contact-info">
+                <!-- Contact details will be populated by JavaScript -->
+            </div>
+        </header>
+        <div class="con item2">
+            <nav>
+                <ul class="navigation display-flex justify-content-end">
+                    <li data-tab-target="#home">Home</li>
+                    <li data-tab-target="#projects">Projects</li>
+                    <li data-tab-target="#contact-me">Contact Me</li>
+                    <li>
+                        Languages &#9662;
+                        <div class="dropdown-content display-flex justify-content-end">
+                            <a href="#" data-language="en" class="selected">English</a>
+                            <a href="#" data-language="fr">Français</a>
+                            <a href="#" data-language="ar">العربية</a>
+                            <a href="#" data-language="ur">اردو</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" data-tab-content class="active">
+                        <h2>About Me</h2>
+                        <p id="about-me"></p>
+                        <h2>Education</h2>
+                        <div id="education"></div>
+                        <h2>Skills</h2>
+                        <div id="skills"></div>
+                        <h2>Social Media Feed</h2>
+                        <div class="shl-mdia" id="social-media"></div>
+                    </div>
+                    <div id="projects" data-tab-content>
+                        <div id="projects-list"></div>
+                    </div>
+                    <div id="contact-me" data-tab-content>
+                        <form action="#" method="POST" class="contact-form">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                            <button type="submit" class="send-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>   
+    </div>
+</div>
+<div class="mobile-dimension">
+    <div class="containers">
+        <header class="cont i1">
+            <img src="img11.png" alt="Profile Image" class="pic">
+            <h1 id="name">Abdullah Zahid</h1>
+            <p id="title">Software Engineer</p>
+            <div class="dropdown">
+                <button class="dropbtn">Contact Info &#9662;</button>
+                <div id="contact-info" class="dropdown-content">
+                    <!-- Contact details will be populated by JavaScript -->
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="cont i2">
+        <div class="tab-content">
+            <div id="home" data-tab-content class="active">
+                <h2>About Me</h2>
+                <p id="about-me">I am a dedicated and motivated Computer Science student at ITU University, Lahore. with a strong foundation in programming, software development, and problem-solving. I am seeking opportunities to apply my skills, contribute to innovative projects, and grow professionally.</p>
+                <h2>Education</h2>
+                <div id="education">"Problem Solving", "Teamwork", "C++", "Basic Python", "HTML, CSS"</div>
+                <h2>Skills</h2>
+                <div id="skills"></div>
+                <h2>Social Media Feed</h2>
+                <div class="shl-mdia" id="social-media"></div>
+            </div>
+            <div id="projects" data-tab-content>
+                <div id="projects-list"></div>
+            </div>
+            <div id="contact-me" data-tab-content>
+                <form action="#" method="POST" class="contact-form">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                    <button type="submit" class="send-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigate">
+        <ul class="navigation display-flex justify-content-end">
+            <li data-tab-target="#home">Home</li>
+            <li data-tab-target="#projects">Projects</li>
+            <li data-tab-target="#contact-me">Contact Me</li>
+            <li>
+                Languages &#9662;
+                <div class="dropdown-content display-flex justify-content-end">
+                    <a href="#" data-language="en" class="selected">English</a>
+                    <a href="#" data-language="fr">Français</a>
+                    <a href="#" data-language="ar">العربية</a>
+                    <a href="#" data-language="ur">اردو</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
