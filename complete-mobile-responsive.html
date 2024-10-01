@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Portfolio</title>
+    <script src="updated_scrypt.js" defer></script>
+    <link rel="stylesheet" href="complete-responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="laptop-dimensions">
+    <div class="container">
+        <header class="con item1">
+            <img src="img11.png" alt="Profile Image">
+            <h1 id="name"></h1>
+            <p id="title"></p>
+            <hr>
+            <div id="contact-info">
+                <!-- Contact details will be populated by JavaScript -->
+            </div>
+        </header>
+        <div class="con item2">
+            <nav>
+                <ul class="navigation display-flex justify-content-end">
+                    <li data-tab-target="#home">Home</li>
+                    <li data-tab-target="#projects">Projects</li>
+                    <li data-tab-target="#contact-me">Contact Me</li>
+                    <li>
+                        Languages &#9662;
+                        <div class="dropdown-content display-flex justify-content-end">
+                            <a href="#" data-language="en" class="selected">English</a>
+                            <a href="#" data-language="fr">Français</a>
+                            <a href="#" data-language="ar">العربية</a>
+                            <a href="#" data-language="ur">اردو</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" data-tab-content class="active">
+                        <h2>About Me</h2>
+                        <p id="about-me"></p>
+                        <h2>Education</h2>
+                        <div id="education"></div>
+                        <h2>Skills</h2>
+                        <div id="skills"></div>
+                        <h2>Social Media Feed</h2>
+                        <div class="shl-mdia" id="social-media"></div>
+                    </div>
+                    <div id="projects" data-tab-content>
+                        <div id="projects-list"></div>
+                    </div>
+                    <div id="contact-me" data-tab-content>
+                        <form action="#" method="POST" class="contact-form">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                            <button type="submit" class="send-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>   
+    </div>
+</div>
+<div class="mobile-dimension">
+    <nav class="navbar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="menu" class="menu hidden">
+            <li data-tab-target="#home">Home</li>
+            <li data-tab-target="#projects">Projects</li>
+            <li data-tab-target="#contact-me">Contact Me</li>
+            <li>
+                Languages &#9662;
+                <div class="dropdown-content display-flex justify-content-end">
+                    <a href="#" data-language="en" class="selected">English</a>
+                    <a href="#" data-language="fr">Français</a>
+                    <a href="#" data-language="ar">العربية</a>
+                    <a href="#" data-language="ur">اردو</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="containers">
+        <header class="cont i1">
+            <img src="img11.png" alt="Profile Image" class="pic">
+            <h1 id="name"></h1>
+            <p id="title"></p>
+            <div class="con-info">
+                <a href="mailto:bscs22111"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAVxJREFUSEvtlT0vRFEQhp8XEQmFWhQKhcQP0EtUChIUSFQ0SiRUGgqFVWiofSQajUSnw08QlY6Ef6Bgx46cvTk2l3P3ynZ72pnzPjPvzLlXtPioxfq0AUmHM4vMbBw4BvqBE2BL0kdSISSY2RSwA3QDy5LuPBQDXoCBSPAemJX0+hfEzLqAPWA9ynuSNNwIsByhN2BO0m0exMyGgAtgrDEu6bv4uIM8gOe4TZuSDmIRM5sGToG+PHgzgPr9K2AB+AQOgZW/rCsDcL3H0PVIavhlASndLF4EcFMboFc6mFB9Dp1NxHlFAPvALnAOTP4CuQYWgW1grVlARdKGXzKzVaBS2/eeIPLugpKOQtxj5QFBZBS4DIAZSQ/1is3s/4AA6fU1leQdZMfM3M74JVNkBplFqdUp2oE/oI5IrBlAYwdVSZ2Nn4ozYD6ClAVUffMkLf0ApGwoG2//MpPOfQF5YZIZbJsM0AAAAABJRU5ErkJggg=="/></a>
+            <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAATJJREFUSEvt1jsvBFEYxvHf22lFRNQkgi+gRKFSKkm0SoKGZEOIgo5WofcBVArR05DoRKOUuCS6sSeZYq3NzsxupnOSac7l+Z/3eibUPKJmfX8AWZYt4QATBfBGROwXXbAT4AFTRQfz9a2IOOm2txMgKyG+h0YZSE+AiIgsy46xWQTpGZCEy0D6ApSB9A1ohyT3tcawJ0DXrPkHFNVIlRh84h7DLW3jCy+YbAGlyh/AWJqrApjLW8Yd1nKR1BaS+DvOsZB/Q825jV4AZ/jIK3YQ65jHCLbxjNNfaVkhi5IFCXCL61S4WMEiRnHYhN3goh/AK75xhTcsYzy3ZLZpwSpSXGawU9VFRQnTcb1KkGsDVHlw2i/xGBHTRb0oPZlHua+rWPGE3Yi47Aqoolhmb+1/FT/FAIYZ0q0yiwAAAABJRU5ErkJggg=="/></a>
+            <a href="https://www.linkedin.com/in/muhammad-abdullah-zahid-a1b7802b8/" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUpJREFUSEvllb0uRFEUhb8loxNRUHkDWo2OQqUQgiF0Et5C4jH8lIgZP6HQCaPR6D2BTlRassyRM5MRdyZncu9M43Y3d+/17b3O3veIHj/qsT79Bdh+AGZydlWTNNvQ+NWBbecU/0mX1NTtBLiNsPluoSmAE0mbQdj2KbDeDSQFcChpOwKOgK2iAR/AMTAAbABDRQPegJcoOgGMAY/xfRwYAfaBT2ASWG4tIMWiiqS1aNEZUG4k2V4EniW9NkRt79aHZ685mglTVJVUjoBKvZvVYJekzDG2XQLegeHUMW0LsD0I3ABTASypFgt5AqaLAIQtvY92HEjaiYBrYKEIQDiDqwjI6jRpk88lBd/DolWBFaAk6cv2EnAZAReSwrfWuH8C6LRoo3G5gjNZcUkWdfNn+BPbaZOLuHDuJM1lXji5ym6T3N87uRcdfAO8QNMZrOQi+QAAAABJRU5ErkJggg=="/></a>
+            <a href="https://github.com/MAbdullah369" target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAm9JREFUSEvFlU2IjlEUx39/kQ1ZIMkS5XOKZKGmiBI2hmKkKBn5Sk0yPko0+WgojeQj7AglzIYdCwuUiHyWSRYWPposTApxPGe6z3TfO8/7zjOLydm87z33f+7/nnPP+T9ikE2DfD41CcxsGLAcWALMBCZDT8wH4DlwJ/PfkPS72kWrEpjZIuAsMKmfLN8DmyTdLcIVEpjZbuBouG2ZKv4F9kg6noL7EJhZC9BW5tQCTLOk9thfQWBmCwBP1f1e3w3AFmA/MAToBLzeUwG/9RHgDHAKWBl89ZIe5CS9BGY2HHgFTAybrZIO+H8z83f4LOl7WI8Axkt6F9b7gMMh7jVQJ+mPr2OC1cC1KL12Sc1lSmVmx4BdEXaZJK9ABcFlYG0EmifpYUmCuqydn0XnnZa0PSXw8kzL05Q0vczhOcbMngCzw/pxlsHclOALMDYAOiQ1DJDgCrAmxHRJGpMSfMoGa1wA3JO0cIAEt4GlIaZb0siU4CkwKwC8W0bXkoCYPEjKV2BU8L+V5K1c8cgXgI1RYJOki2WyMLMm4HyEvSRpXUrgNb8JfAO6vc99/F2PJP0oIjIzn4dtYeB8EHNblTXJ9ZTAZ8I7aQKwGNgMrAd+halulPTTg0JJbgXc0IT8DTBDkk96pVyb2QqX36xUH4E5YfDmhyy2JnW/CjQWZNYgqSP3F4ndSWCH64+kQ9XewMwOZsn0SElkJzI52Rk7qsm1i1srcD8TsRfAS0nnkgx833G5tZSS6xxtZvWAS69PZ5skf/BeMzNX0r3AI8Bl2n/7WH+fTN/3T2anJM8kJpjisi3JH7uq/d+Pfq2bld37B8MT0hliYf0NAAAAAElFTkSuQmCC"/></a>
+            <a href="https://wa.me/923034232979"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAmhJREFUSEvFlUuIT2EYxn8PC3eaHZlJhIjCyGVDUmZI2biUKWUSxbgkNQs2FAuxYZBSE8VCsZjS5C6kkImNS4rJZOWSohDG47z1Tf39/c8Zm2m+5TnveZ/vfd7neY7o46M+7k//A9ieDawBFgKTgW7gHvAAuCLpcRELuRPYrgFOAfXAFyAaPQe+A7OAGcAo4DCwR9KPSkAVAWzHTW8Bg4CdwFlJLm9ge1sCeA2skvS0vOYfANujgUeJisWSXhVRYHt6NlEbMACYJulraX0lgHZgLjBHUqftscAISS/ygBJIB9AqaXMugO0FwB1gg6RW21PTNO+B8ZVo6mlmezdwAKiTdK3n+V8T2G4BGoEqST9tNwMHU3G9pKsFUwxJYmiTtDIP4AnQJWlFFNjeAhxPxY2STveyj/geSTPzAN5m/LdL2pQAxgCdwCegRtKvXgBOAg2SRuYBvAQ6JK0t4TakeBQ4AWztZQ9B5w5Jg/MALif+55XeNFv2+eTmkGMADgWCrlbggqSYMCiNulpJk/IA9gOx2GpJ70qmGJgBHwGagM9Bc0g3vT+Uab/ZdvjgA3BR0sY8gAlAGGufpL0VnLsk0TUlvfsNLA1Z2m4AzkW0lKqtktFCCd2SIuQqHtu1QCzyTTLjOOBhZJWkRUVGG5YU0yJpV5FiSuiL5tcTYLi/qwhgOXApo2kdEOPXZRTcz1x8RtK3ssVXA+uB7bHfLAEit4rDzvaxtMieXvHBRCCi+HbyRDSLrJqfiu6G+/NCsTwqIkNiyTeBG5I+2h4OrM5+MMuAkG9VJtlnKbNCosF97un/X+b/LLpfJ/gDTNjyGVIqbQEAAAAASUVORK5CYII="/></a>
+            </div>
+        </header>
+    </div>
+    <div class="cont i2">
+        <div class="tab-content">
+            <div id="home" data-tab-content class="active">
+                <h2>About Me</h2>
+                <p id="about-me"></p>
+                <h2>Education</h2>
+                <div id="education"></div>
+                <h2>Skills</h2>
+                <div id="skills"></div>
+                <h2>Social Media Feed</h2>
+                <div class="shl-mdia" id="social-media"></div>
+            </div>
+            <div id="projects" data-tab-content>
+                <div id="projects-list"></div>
+            </div>
+            <div id="contact-me" data-tab-content>
+                <form action="#" method="POST" class="contact-form">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                    <button type="submit" class="send-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+
+</body>
+</html>
