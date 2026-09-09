@@ -2,37 +2,42 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ProjectCard from '../components/ProjectCard'
+import StatCounter from '../components/StatCounter'
 import { useReveal } from '../hooks/useReveal'
-import { Metadata } from 'next'
-
-const skills = [
-  'React', 'Next.js', 'Flutter', 'Node.js', 'Express.js',
-  'MongoDB', 'Tailwind CSS', 'JavaScript', 'Python', 'C++',
-  'Docker', 'Git', 'REST APIs', 'TypeScript', 'SQL',
-]
+import Image from 'next/image'
 
 const featured = [
   {
-    title: 'Quran Recitation App',
-    description: 'Final year project providing real-time feedback on Quranic recitation accuracy using OpenAI\'s Whisper model. Improved error detection by 25% and reduced inference latency from 10s to 1s via INT8 quantization and TensorFlow Lite.',
+    title: 'Quran Recitation App (Final Year Project)',
+    description: 'Awarded 1st Position in the Computer Science Department at ITU Sparkup Innovation Summit 2026. Built real-time recitation accuracy feedback using OpenAI\'s Whisper model fine-tuned on custom datasets (+25% error detection) and reduced inference latency from 10s to 1s via INT8 quantization & local TensorFlow Lite deployment.',
     link: 'https://github.com/MAbdullah369',
     tags: ['Flutter', 'Whisper API', 'TensorFlow Lite', 'Python', 'Dart'],
-    year: '2025',
+    year: '2025 – 2026',
+    image: '/projects/quran_app.jpg',
   },
   {
-    title: 'University Management Portal (CMS)',
-    description: 'Comprehensive data-driven content management system enabling multi-tier university workflow scheduling. Implemented secure RBAC middleware supporting Admin, Instructor, and Student roles via JWT, with analytics views and 35% faster query response times.',
+    title: 'TravelHub — Travel & Itinerary Platform',
+    description: 'Full-featured travel management and exploration platform enabling dynamic itinerary generation, destination discovery, and multi-tier booking coordination. Integrated RESTful backend services with real-time location mapping, route calculation, and caching layers.',
     link: 'https://github.com/MAbdullah369',
-    tags: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'JWT'],
-    year: '2023',
+    tags: ['Next.js', 'React.js', 'Node.js', 'MongoDB', 'REST APIs', 'Tailwind CSS'],
+    year: '2026',
+    image: '/projects/travelhub.jpg',
   },
   {
-    title: 'E-commerce Platform',
-    description: 'Commercial-ready storefront with centralized production pipeline, product catalog, shopping cart, and order management. Reduced server response latency by 40% through optimized MongoDB aggregation pipelines and high-throughput query structures.',
+    title: 'Client-Server Communication System',
+    description: 'Engineered high-performance client-server architecture in C utilizing low-level UNIX/POSIX sockets and IPC mechanisms. Implemented custom command parsing, multithreaded request-response handling, and robust packet validation simulating core OS protocols.',
     link: 'https://github.com/MAbdullah369',
-    tags: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs'],
-    year: '2023',
+    tags: ['C', 'Operating Systems', 'Sockets / IPC', 'Systems Programming', 'Linux'],
+    year: '2024',
+    image: '/projects/client_server.jpg',
   },
+]
+
+const stats = [
+  { value: 25, suffix: '%', label: 'improvement in recitation-error detection after fine-tuning Whisper on a custom dataset' },
+  { value: 10, suffix: 'x', label: 'faster inference — cut response time from 10s to 1s via INT8 quantization' },
+  { value: 15000, suffix: '+', label: 'crowdsourced audio recordings collected for AI model training' },
+  { value: 1, prefix: '#', label: 'place, ITU Sparkup Innovation Summit 2026' },
 ]
 
 export default function Home() {
@@ -43,173 +48,165 @@ export default function Home() {
       <Header />
 
       {/* ── Hero ───────────────────────────────────────────────── */}
-      <section
-        style={{
-          paddingTop: 'clamp(6rem, 18vw, 10rem)',
-          paddingBottom: 'clamp(4rem, 10vw, 7rem)',
-          paddingLeft: '1.5rem',
-          paddingRight: '1.5rem',
-          maxWidth: '72rem',
-          margin: '0 auto',
-          width: '100%',
-          position: 'relative',
-        }}
-      >
-        {/* Decorative big number */}
-        <span
-          className="big-num anim-fade"
-          style={{
-            position: 'absolute',
-            right: '1.5rem',
-            top: '4rem',
-            pointerEvents: 'none',
-            userSelect: 'none',
-          }}
-        >
-          01
-        </span>
+      <section className="hero-wrapper">
+        <div className="hero-ambient-orb" />
 
-        {/* Floating badge */}
-        <div
-          className="float-badge anim-fade anim-fade-d1"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.35rem 0.85rem',
-            border: '1px solid var(--line)',
-            borderRadius: '100px',
-            fontSize: '0.75rem',
-            fontWeight: 500,
-            letterSpacing: '0.06em',
-            color: 'var(--muted)',
-            marginBottom: '2rem',
-            background: 'var(--surface2)',
-          }}
-        >
-          <span
-            style={{
-              width: '6px', height: '6px',
-              borderRadius: '50%',
-              background: '#22c55e',
-              boxShadow: '0 0 0 3px rgba(34,197,94,0.2)',
-            }}
-          />
-          Available for new projects
-        </div>
+        <div className="hero-grid">
+          {/* Left Column */}
+          <div>
+            <div className="hero-salutation anim-fade-up">
+              <span className="hero-status-dot" />
+              <span>Available for software roles</span>
+            </div>
 
-        <h1
-          className="anim-fade-up"
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2.6rem, 7vw, 5.5rem)',
-            letterSpacing: '-0.03em',
-            lineHeight: 1.05,
-            color: 'var(--ink)',
-            maxWidth: '14ch',
-            marginBottom: '0.5rem',
-          }}
-        >
-          Hello — I'm<br />
-          <em style={{ color: 'var(--accent)', fontStyle: 'italic' }}>Abdullah Zahid</em>
-        </h1>
+            <h1 className="hero-name-title anim-fade-up anim-fade-up-d1">
+              Abdullah Zahid
+            </h1>
 
-        <span className="accent-line" style={{ width: '3rem', marginBottom: '1.5rem' }} />
+            <div className="hero-role-badge anim-fade-up anim-fade-up-d1">
+              <span className="accent-line" style={{ width: '2.25rem', marginBottom: 0 }} />
+              <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--accent)' }}>
+                Software Developer &amp; Engineer
+              </span>
+            </div>
 
-        <p
-          className="anim-fade-up anim-fade-up-d2"
-          style={{
-            fontSize: 'clamp(1rem, 2.2vw, 1.2rem)',
-            color: 'var(--ink-soft)',
-            maxWidth: '42ch',
-            lineHeight: 1.7,
-            marginBottom: '2.5rem',
-          }}
-        >
-          I build fast, elegant web experiences — from pixel-perfect interfaces
-          to robust full-stack systems that scale.
-        </p>
+            <p
+              className="anim-fade-up anim-fade-up-d2"
+              style={{
+                fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+                color: 'var(--ink-soft)',
+                maxWidth: '46ch',
+                lineHeight: 1.75,
+                marginBottom: '1.75rem',
+              }}
+            >
+              I build intelligent software systems and high-performance applications — spanning low-level systems programming, embedded AI/ML models, and full-stack architectures.
+            </p>
 
-        <div
-          className="anim-fade-up anim-fade-up-d3"
-          style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}
-        >
-          <a href="/projects" className="btn-primary">View My Work</a>
-          <a
-            href="/contact"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.75rem 1.75rem',
-              border: '1px solid var(--line)',
-              borderRadius: '2px',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              transition: 'border-color 0.2s, background 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--ink)'
-              e.currentTarget.style.background = 'var(--ink)'
-              e.currentTarget.style.color = 'white'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--line)'
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = 'var(--ink)'
-            }}
-          >
-            Get in touch
-          </a>
+            <div className="hero-chips-grid anim-fade-up anim-fade-up-d2">
+              <span className="hero-chip">
+                <span className="hero-chip-dot" style={{ background: 'var(--accent)' }} />
+                AI &amp; Whisper ML optimization
+              </span>
+              <span className="hero-chip">
+                <span className="hero-chip-dot" style={{ background: 'var(--accent2)' }} />
+                Systems &amp; low-level (C / C++)
+              </span>
+              <span className="hero-chip">
+                <span className="hero-chip-dot" style={{ background: '#9ec97a' }} />
+                Scalable full-stack software
+              </span>
+            </div>
+
+            <div
+              className="anim-fade-up anim-fade-up-d3"
+              style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}
+            >
+              <a href="/projects" className="btn-primary" style={{ padding: '0.85rem 2rem' }}>
+                View projects
+              </a>
+              <a href="/contact" className="btn-secondary" style={{ padding: '0.8rem 1.85rem' }}>
+                Get in touch
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Engineering console */}
+          <div className="anim-fade anim-fade-d2">
+            <div className="hero-console-card" data-cursor="view" data-cursor-text="ABOUT">
+              <div className="hero-console-header">
+                <div className="hero-traffic-dots">
+                  <span className="hero-traffic-dot red" />
+                  <span className="hero-traffic-dot yellow" />
+                  <span className="hero-traffic-dot green" />
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Image
+                    src="/profile.jpg"
+                    alt="Abdullah Zahid"
+                    width={20}
+                    height={20}
+                    style={{ borderRadius: '50%', objectFit: 'cover' }}
+                  />
+                  <span style={{ fontSize: '0.74rem', color: 'var(--ink-soft)', fontFamily: 'var(--font-mono)' }}>
+                    abdullah.config.ts
+                  </span>
+                </div>
+
+                <span style={{ fontSize: '0.68rem', color: 'var(--accent)', fontWeight: 600 }}>
+                  ACTIVE
+                </span>
+              </div>
+
+              <div className="hero-console-body">
+                <p><span className="token-kw">const</span> <span className="token-fn">softwareEngineer</span> = &#123;</p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">name:</span> <span className="token-str">'Abdullah Zahid'</span>,
+                </p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">role:</span> <span className="token-str">'Software Developer &amp; Engineer'</span>,
+                </p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">education:</span> <span className="token-str">'BS CS @ ITU (2022–2026)'</span>,
+                </p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">languages:</span> [
+                </p>
+                <p style={{ paddingLeft: '2.25rem' }}>
+                  <span className="token-str">'C++'</span>, <span className="token-str">'C'</span>, <span className="token-str">'Python'</span>, <span className="token-str">'TypeScript'</span>, <span className="token-str">'SQL'</span>
+                </p>
+                <p style={{ paddingLeft: '1.25rem' }}>],</p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">specialties:</span> [
+                </p>
+                <p style={{ paddingLeft: '2.25rem' }}>
+                  <span className="token-str">'AI &amp; ML (Whisper / TFLite)'</span>,
+                </p>
+                <p style={{ paddingLeft: '2.25rem' }}>
+                  <span className="token-str">'Systems &amp; IPC / Sockets'</span>,
+                </p>
+                <p style={{ paddingLeft: '2.25rem' }}>
+                  <span className="token-str">'Scalable Full-Stack Architecture'</span>
+                </p>
+                <p style={{ paddingLeft: '1.25rem' }}>],</p>
+                <p style={{ paddingLeft: '1.25rem' }}>
+                  <span className="token-key">openToWork:</span> <span className="token-kw">true</span>
+                </p>
+                <p>&#125;;</p>
+              </div>
+
+              <div className="hero-console-footer">
+                <span>ITU Sparkup Innovation Award — 1st place</span>
+                <span style={{ color: 'var(--accent)' }}>8+ projects shipped</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ── Skills Ticker ──────────────────────────────────────── */}
-      <div
+      {/* ── Impact ─────────────────────────────────────────────── */}
+      <section
         style={{
-          borderTop: '1px solid var(--line)',
-          borderBottom: '1px solid var(--line)',
-          padding: '0.9rem 0',
-          overflow: 'hidden',
-          background: 'var(--surface2)',
+          maxWidth: '72rem',
+          margin: '0 auto',
+          padding: '0 1.5rem clamp(3rem, 8vw, 5rem)',
+          width: '100%',
         }}
       >
-        {/* 
-          ANIMATION: Marquee / infinite scroll ticker
-          - .marquee-track duplicates the list so the scroll looks seamless
-          - CSS animation: marquee moves translateX from 0 to -50% (half = one full copy)
-          - Pauses on hover via animation-play-state: paused
-        */}
-        <div className="marquee-track" aria-hidden>
-          {[...skills, ...skills].map((s, i) => (
-            <span
-              key={i}
-              style={{
-                padding: '0 2rem',
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'var(--muted)',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {s}
-              <span style={{ marginLeft: '2rem', color: 'var(--gold)' }}>·</span>
-            </span>
+        <div className="stat-grid">
+          {stats.map((s) => (
+            <StatCounter key={s.label} {...s} />
           ))}
         </div>
-      </div>
+      </section>
 
       {/* ── Featured Projects ──────────────────────────────────── */}
       <section
         style={{
           maxWidth: '72rem',
           margin: '0 auto',
-          padding: 'clamp(4rem, 10vw, 7rem) 1.5rem',
+          padding: 'clamp(2rem, 6vw, 4rem) 1.5rem clamp(4rem, 10vw, 7rem)',
           width: '100%',
         }}
       >
@@ -223,27 +220,12 @@ export default function Home() {
             gap: '1rem',
           }}
         >
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.6rem, 4vw, 2.5rem)',
-              letterSpacing: '-0.025em',
-            }}
-          >
-            Featured Work
-          </h2>
-          <a
-            href="/projects"
-            style={{
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '0.07em',
-              textTransform: 'uppercase',
-              color: 'var(--accent)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            All projects →
+          <div>
+            <span className="section-label">// featured-work</span>
+            <h2>Selected projects</h2>
+          </div>
+          <a href="/projects" className="nav-link" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent)', whiteSpace: 'nowrap' }}>
+            All projects
           </a>
         </div>
 
@@ -264,7 +246,7 @@ export default function Home() {
       <section
         className="reveal"
         style={{
-          background: 'linear-gradient(135deg, rgba(255,107,53,0.12) 0%, rgba(79,156,255,0.12) 100%)',
+          background: 'var(--surface2)',
           borderTop: '1px solid var(--line)',
           borderBottom: '1px solid var(--line)',
           padding: 'clamp(3rem, 8vw, 5rem) 1.5rem',
@@ -275,7 +257,6 @@ export default function Home() {
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(1.4rem, 4vw, 2.4rem)',
-            letterSpacing: '-0.02em',
             marginBottom: '1.5rem',
             maxWidth: '20ch',
             margin: '0 auto 1.5rem',
@@ -284,12 +265,8 @@ export default function Home() {
         >
           Have a project in mind?
         </p>
-        <a
-          href="/contact"
-          className="btn-primary"
-          style={{ background: 'var(--accent)', display: 'inline-flex' }}
-        >
-          Let's work together →
+        <a href="/contact" className="btn-primary" style={{ display: 'inline-flex' }}>
+          Let's work together
         </a>
       </section>
 

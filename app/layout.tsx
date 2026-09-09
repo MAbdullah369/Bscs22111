@@ -1,59 +1,61 @@
 import '../styles/globals.css'
 import { Metadata } from 'next'
+import CustomCursor from '../components/CustomCursor'
+import CommandPalette from '../components/CommandPalette'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://abdullah-zahid.netlify.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Abdullah Zahid — Full-Stack Developer',
+    default: 'Abdullah Zahid — Software Developer',
     template: '%s | Abdullah Zahid',
   },
   description:
-    'Portfolio of Abdullah Zahid — a full-stack developer specialising in AI-powered applications, beautiful interfaces, and scalable systems.',
+    'Portfolio of Abdullah Zahid — Software Developer specializing in AI/ML systems, systems programming, and scalable full-stack applications.',
   keywords: [
-    'portfolio',
-    'full-stack developer',
-    'frontend engineer',
-    'backend engineer',
-    'Next.js',
+    'software developer',
+    'software engineer',
+    'C++',
+    'C',
+    'Python',
     'React',
-    'Node.js',
-    'machine learning',
+    'Next.js',
+    'TensorFlow Lite',
+    'Whisper AI',
+    'Operating Systems',
+    'Data Structures',
+    'full-stack developer',
   ],
   authors: [{ name: 'Abdullah Zahid', url: BASE_URL }],
   creator: 'Abdullah Zahid',
 
-  /* ── Open Graph ── */
   openGraph: {
-    title: 'Abdullah Zahid — Full-Stack Developer',
+    title: 'Abdullah Zahid — Software Developer',
     description:
-      'Portfolio of Abdullah Zahid — a full-stack developer specialising in AI-powered applications and scalable web systems.',
+      'Portfolio of Abdullah Zahid — Software Developer specializing in AI/ML systems, systems programming, and scalable full-stack software.',
     url: BASE_URL,
     siteName: 'Abdullah Zahid',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: `${BASE_URL}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Abdullah Zahid — Full-Stack Developer',
+        url: `${BASE_URL}/profile.jpg`,
+        width: 800,
+        height: 800,
+        alt: 'Abdullah Zahid',
       },
     ],
   },
 
-  /* ── Twitter / X Card ── */
   twitter: {
-    card: 'summary_large_image',
-    title: 'Abdullah Zahid — Full-Stack Developer',
+    card: 'summary',
+    title: 'Abdullah Zahid — Software Developer',
     description:
-      'Portfolio of Abdullah Zahid — a full-stack developer specialising in AI-powered applications and scalable web systems.',
-    creator: '@MAbdullah369',
-    images: [`${BASE_URL}/og-image.png`],
+      'Portfolio of Abdullah Zahid — Software Developer specializing in AI/ML systems, systems programming, and scalable full-stack software.',
+    images: [`${BASE_URL}/profile.jpg`],
   },
 
-  /* ── Robots ── */
   robots: {
     index: true,
     follow: true,
@@ -66,21 +68,10 @@ export const metadata: Metadata = {
     },
   },
 
-  /* ── Icons ── */
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
 
-  /* ── Verification (add your own tokens) ── */
-  verification: {
-    google: 'YOUR_GOOGLE_SITE_VERIFICATION_TOKEN',
-  },
-
-  /* ── Alternate ── */
   alternates: {
     canonical: BASE_URL,
   },
@@ -90,28 +81,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* JSON-LD structured data — Person schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Person',
-              name: 'Your Name',
+              name: 'Abdullah Zahid',
               url: BASE_URL,
               sameAs: [
-                'https://github.com/yourusername',
-                'https://linkedin.com/in/yourusername',
-                'https://twitter.com/yourhandle',
+                'https://github.com/MAbdullah369',
+                'https://linkedin.com/in/mabdullah79',
               ],
-              jobTitle: 'Creative Developer',
+              jobTitle: 'Software Developer & Engineer',
               description:
-                'Creative developer specialising in beautiful, performant web experiences.',
+                'Software Developer specializing in AI/ML systems, systems programming, and scalable full-stack applications.',
             }),
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CustomCursor />
+        <CommandPalette />
+        {children}
+      </body>
     </html>
   )
 }

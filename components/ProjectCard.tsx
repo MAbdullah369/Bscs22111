@@ -1,3 +1,7 @@
+'use client'
+import { useRef } from 'react'
+import Image from 'next/image'
+
 type Props = {
   title: string
   description: string
@@ -5,63 +9,80 @@ type Props = {
   tags?: string[]
   year?: string
   index?: number
+  image?: string
 }
 
-export default function ProjectCard({ title, description, link, tags = [], year, index = 0 }: Props) {
+export default function ProjectCard({ title, description, link, tags = [], year, index = 0, image }: Props) {
+  const cardRef = useRef<HTMLElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = cardRef.current
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width - 0.5
+    const py = (e.clientY - rect.top) / rect.height - 0.5
+    card.style.transform = `perspective(800px) rotateX(${(-py * 4).toFixed(2)}deg) rotateY(${(px * 4).toFixed(2)}deg) translateY(-3px)`
+  }
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current
+    if (!card) return
+    card.style.transform = ''
+  }
+
   return (
     <article
+      ref={cardRef}
       className="project-card reveal"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{ animationDelay: `${index * 0.08}s`, transition: 'transform 0.25s var(--ease-out-expo), border-color 0.3s' }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      data-cursor="view"
     >
-      {/* Top row */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: '1rem',
-        }}
-      >
-        {/* Decorative index number */}
-        <span
+      {image && (
+        <div
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '0.7rem',
-            color: 'var(--muted)',
-            letterSpacing: '0.1em',
+            position: 'relative',
+            width: '100%',
+            height: '190px',
+            marginBottom: '1.25rem',
+            borderRadius: '6px',
+            overflow: 'hidden',
+            border: '1px solid var(--line)',
+            background: 'var(--surface)',
           }}
         >
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        {year && (
-          <span className="tag">{year}</span>
-        )}
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: 'cover', transition: 'transform 0.5s var(--ease-out-expo)' }}
+            className="project-image-hover"
+          />
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to top, rgba(11,12,14,0.85) 0%, transparent 55%)',
+              pointerEvents: 'none',
+            }}
+          />
+        </div>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.6rem' }}>
+        {year && <span className="tag">{year}</span>}
       </div>
 
-      <h3
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.3rem',
-          marginBottom: '0.65rem',
-          color: 'var(--ink)',
-          letterSpacing: '-0.02em',
-        }}
-      >
+      <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '0.65rem', color: 'var(--ink)' }}>
         {title}
       </h3>
 
-      <p
-        style={{
-          fontSize: '0.9rem',
-          color: 'var(--ink-soft)',
-          lineHeight: '1.65',
-          marginBottom: '1.25rem',
-        }}
-      >
+      <p style={{ fontSize: '0.9rem', color: 'var(--ink-soft)', lineHeight: '1.65', marginBottom: '1.25rem' }}>
         {description}
       </p>
 
-      {/* Tags */}
       {tags.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
           {tags.map((t) => (
@@ -70,28 +91,15 @@ export default function ProjectCard({ title, description, link, tags = [], year,
         </div>
       )}
 
-      {/* CTA */}
       {link && (
         <a
           href={link}
           target="_blank"
           rel="noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            fontSize: '0.78rem',
-            fontWeight: 600,
-            letterSpacing: '0.07em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            transition: 'gap 0.2s',
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.gap = '0.7rem')}
-          onMouseLeave={(e) => (e.currentTarget.style.gap = '0.4rem')}
+          className="nav-link"
+          style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--accent)' }}
         >
           View project
-          <span style={{ fontSize: '1rem', lineHeight: 1 }}>→</span>
         </a>
       )}
     </article>
