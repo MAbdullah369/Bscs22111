@@ -1,16 +1,31 @@
 'use client'
+import { useMemo, useState } from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ProjectCard from '../../components/ProjectCard'
-import { useReveal } from '../../hooks/useReveal'
 
-const projects = [
+type Category = 'All' | 'AI & ML' | 'Core CS' | 'Web'
+
+const projects: {
+  title: string
+  description: string
+  link: string
+  tags: string[]
+  year: string
+  category: Category
+  image?: string
+  cover?: 'audio' | 'chess' | 'cards' | 'cms' | 'shop'
+  featured?: boolean
+}[] = [
   {
     title: 'Quran Recitation App (Final Year Project)',
     description: 'Awarded 1st Position in the Computer Science Department at the ITU Sparkup Innovation Summit 2026. Built real-time recitation accuracy feedback using OpenAI\'s Whisper model fine-tuned on custom datasets (+25% error detection) and reduced inference latency from 10s to 1s via INT8 post-training quantization and local TensorFlow Lite deployment.',
     link: 'https://github.com/MAbdullah369',
     tags: ['Flutter', 'Whisper API', 'TensorFlow Lite', 'Python', 'Dart', 'AI / ML'],
     year: '2025 – Present',
+    category: 'AI & ML',
+    image: '/projects/quran_app.jpg',
+    featured: true,
   },
   {
     title: 'Client-Server Communication System',
@@ -18,6 +33,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['C', 'Operating Systems', 'Sockets / IPC', 'Systems Programming', 'Linux'],
     year: '2024',
+    category: 'Core CS',
+    image: '/projects/client_server.jpg',
   },
   {
     title: 'TravelHub — Travel & Itinerary Platform',
@@ -25,6 +42,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['Next.js', 'React.js', 'Node.js', 'MongoDB', 'REST APIs', 'Tailwind CSS'],
     year: '2024',
+    category: 'Web',
+    image: '/projects/travelhub.jpg',
   },
   {
     title: 'Quran Audio Data Collection Platform',
@@ -32,6 +51,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'REST APIs'],
     year: '2025 – 2026',
+    category: 'AI & ML',
+    image: '/projects/audio.jpg',
   },
   {
     title: 'Chess Engine & Interactive Game',
@@ -39,6 +60,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['C++', 'OOP', 'Game Engine', 'Algorithms', 'State Machine'],
     year: '2023',
+    category: 'Core CS',
+    image: '/projects/chess.jpg',
   },
   {
     title: 'Solitaire Card Game Engine',
@@ -46,6 +69,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['C++', 'Data Structures', 'Algorithms', 'Game Logic'],
     year: '2023',
+    category: 'Core CS',
+    image: '/projects/cards.jpg',
   },
   {
     title: 'University Management Portal (CMS)',
@@ -53,6 +78,8 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'JWT', 'RBAC'],
     year: '2023',
+    category: 'Web',
+    image: '/projects/cms.jpg',
   },
   {
     title: 'E-commerce Platform',
@@ -60,11 +87,23 @@ const projects = [
     link: 'https://github.com/MAbdullah369',
     tags: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs'],
     year: '2025',
+    category: 'Web',
+    image: '/projects/shop.jpg',
   },
 ]
 
+const categories: Category[] = ['All', 'AI & ML', 'Core CS', 'Web']
+
 export default function ProjectsPage() {
-  useReveal()
+  const [active, setActive] = useState<Category>('All')
+
+  const counts = useMemo(() => {
+    const c: Record<Category, number> = { All: projects.length, 'AI & ML': 0, 'Core CS': 0, Web: 0 }
+    projects.forEach((p) => { c[p.category] += 1 })
+    return c
+  }, [])
+
+  const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active)
 
   return (
     <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -78,7 +117,7 @@ export default function ProjectsPage() {
           width: '100%',
         }}
       >
-        <div style={{ marginBottom: '3rem' }}>
+        <div style={{ marginBottom: '2.5rem' }}>
           <span className="section-label anim-fade">// all-projects</span>
           <h1 className="anim-fade-up" style={{ marginBottom: '0.5rem' }}>
             Software projects
@@ -89,17 +128,38 @@ export default function ProjectsPage() {
           </p>
         </div>
 
+        <div className="filter-tabs anim-fade-up anim-fade-up-d2" style={{ marginBottom: '2.5rem' }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`filter-tab ${active === cat ? 'active' : ''}`}
+              onClick={() => setActive(cat)}
+              data-cursor-text="FILTER"
+            >
+              {cat}
+              <span className="filter-tab-count">{counts[cat]}</span>
+            </button>
+          ))}
+        </div>
+
         <div
+          key={active}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
             gap: '1.25rem',
           }}
         >
-          {projects.map((p, i) => (
+          {filtered.map((p, i) => (
             <ProjectCard key={p.title} {...p} index={i} />
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <p style={{ color: 'var(--muted)', padding: '3rem 0', textAlign: 'center' }}>
+            Nothing here yet in this category.
+          </p>
+        )}
       </section>
 
       <Footer />
